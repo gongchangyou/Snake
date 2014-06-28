@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "BattleScene::onTouchEnded(cocos2d::Touch*, cocos2d::Event*):BattleScene.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "CommonUtils::convertWinToBox2D">
+            </PersistentString>
+            <PersistentString
+               value = "CommonUtils::convertWinToBox2D(picked_item-&gt;getPosition())">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OneSidedPlatform::init():OneSidePlatform.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "i">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "b2Body::SetType(b2BodyType):b2Body.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_world-&gt;IsLocked()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "b2Body::SetTransform(b2Vec2 const&amp;, float):b2Body.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_world">
+            </PersistentString>
+            <PersistentString
+               value = "m_flags">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OneSidedPlatform::PreSolve(b2Contact*, b2Manifold const*):OneSidedPlatform.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_platform">
+            </PersistentString>
+            <PersistentString
+               value = "m_character">
+            </PersistentString>
+            <PersistentString
+               value = "m_cannon">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OneSidedPlatform::Step(Settings*):OneSidedPlatform.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_times">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OneSidedPlatform::BeginContact(b2Contact*):OneSidePlatform.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_platformList.size()">
+            </PersistentString>
+            <PersistentString
+               value = "m_characters[i]-&gt;getB2fixture()-&gt;GetBody()-&gt;GetLinearVelocity().y ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OneSidedPlatform::getItemFinalPos(cocos2d::Point):OneSidePlatform.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "downList.size()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BattleScene::onTouchMoved(cocos2d::Touch*, cocos2d::Event*):BattleScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_pickItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
