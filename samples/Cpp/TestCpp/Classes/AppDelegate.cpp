@@ -4,8 +4,7 @@
 #include "SimpleAudioEngine.h"
 #include "cocostudio/CocoStudio.h"
 #include "extensions/cocos-ext.h"
-#include "Box2dView.h"
-#include "BattleScene.h"
+#include "SpineTest.h"
 #include "MenuScene.h"
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -76,9 +75,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     EGLView::getInstance()->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
     
-    auto scene = MenuScene::scene();
-
-    director->runWithScene(scene);
+    Scene *test = Scene::create();
+    auto layer = SpineTestLayer::create();
+    test->addChild(layer);
+    director->runWithScene(test);
 
     // Enable Remote Console
     auto console = director->getConsole();

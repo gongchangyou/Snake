@@ -3,13 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "BattleScene::onTouchEnded(cocos2d::Touch*, cocos2d::Event*):BattleScene.h">
+         contextName = "BattleScene::onTouchMoved(cocos2d::Touch*, cocos2d::Event*):BattleScene.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "CommonUtils::convertWinToBox2D">
-            </PersistentString>
-            <PersistentString
-               value = "CommonUtils::convertWinToBox2D(picked_item-&gt;getPosition())">
+               value = "m_pickItem">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -44,13 +41,13 @@
          contextName = "OneSidedPlatform::PreSolve(b2Contact*, b2Manifold const*):OneSidedPlatform.h">
          <PersistentStrings>
             <PersistentString
-               value = "m_platform">
+               value = "m_cannon">
             </PersistentString>
             <PersistentString
                value = "m_character">
             </PersistentString>
             <PersistentString
-               value = "m_cannon">
+               value = "m_platform">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -66,10 +63,29 @@
          contextName = "OneSidedPlatform::BeginContact(b2Contact*):OneSidePlatform.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "m_platformList.size()">
+               value = "m_characters[i]-&gt;getB2fixture()-&gt;GetBody()-&gt;GetLinearVelocity().y ">
             </PersistentString>
             <PersistentString
-               value = "m_characters[i]-&gt;getB2fixture()-&gt;GetBody()-&gt;GetLinearVelocity().y ">
+               value = "m_platformList.size()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SpineTestLayer::onTouchBegan(cocos2d::Touch*, cocos2d::Event*):SpineTest.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "finalPos">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BattleScene::onTouchEnded(cocos2d::Touch*, cocos2d::Event*):BattleScene.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "CommonUtils::convertWinToBox2D">
+            </PersistentString>
+            <PersistentString
+               value = "CommonUtils::convertWinToBox2D(picked_item-&gt;getPosition())">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -78,14 +94,6 @@
          <PersistentStrings>
             <PersistentString
                value = "downList.size()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BattleScene::onTouchMoved(cocos2d::Touch*, cocos2d::Event*):BattleScene.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "m_pickItem">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

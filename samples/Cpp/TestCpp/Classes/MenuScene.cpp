@@ -7,7 +7,6 @@
 //
 
 #include "MenuScene.h"
-#include "BattleScene.h"
 #include "UserInfo.h"
 #include "SaveData.h"
 MenuScene::MenuScene(){}
@@ -52,5 +51,5 @@ void MenuScene::goToMission(Object* sender, Control::EventType event){
     log("test %d", tag);
     
     UserInfo::getInstance()->setCurMissionId(tag);
-    CCDirector::getInstance()->replaceScene(BattleScene::scene());
+    //CCDirector::getInstance()->replaceScene(BattleScene::scene());
 }
