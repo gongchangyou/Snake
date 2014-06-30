@@ -91,6 +91,9 @@ bool SpineTestLayer::init () {
     
     firstUnit = skeletonNode->findBone("left upper leg");
     secondUnit = skeletonNode->findBone("left lower leg");
+    
+    SkeletonAnimation * skeletonNode1 = SkeletonAnimation::createWithFile("spine/spineboy.json", "spine/spineboy.atlas");
+    
     return true;
 }
 

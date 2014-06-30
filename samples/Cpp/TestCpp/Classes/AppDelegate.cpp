@@ -6,6 +6,7 @@
 #include "extensions/cocos-ext.h"
 #include "SpineTest.h"
 #include "MenuScene.h"
+#include "MissionScene.h"
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -75,10 +76,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     EGLView::getInstance()->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
     
-    Scene *test = Scene::create();
-    auto layer = SpineTestLayer::create();
-    test->addChild(layer);
-    director->runWithScene(test);
+//    auto layer = SpineTestLayer::create();
+//    test->addChild(layer);
+    director->runWithScene(MissionScene::scene());
 
     // Enable Remote Console
     auto console = director->getConsole();

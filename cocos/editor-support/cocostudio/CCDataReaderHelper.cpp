@@ -1223,6 +1223,7 @@ void DataReaderHelper::addDataFromJsonCache(const std::string& fileContent, Data
         {
             _dataReaderHelper->_addDataMutex.lock();
         }
+
         ArmatureDataManager::getInstance()->addAnimationData(animationData->name.c_str(), animationData);
         animationData->release();
         if (dataInfo->asyncStruct)

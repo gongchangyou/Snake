@@ -232,6 +232,11 @@
 		819DE36619559E4300A3D8B4 /* mission in Resources */ = {isa = PBXBuildFile; fileRef = 819DE35C19558F2500A3D8B4 /* mission */; };
 		81C68524194DCCFC00903F2B /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C68522194DCCFC00903F2B /* CommonUtils.cpp */; };
 		81C68529194DDD3400903F2B /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C68522194DCCFC00903F2B /* CommonUtils.cpp */; };
+		81E3EA4D1961945800B0739B /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81E3EA4B1961945800B0739B /* MissionScene.cpp */; };
+		81E3EA4E196194F500B0739B /* MissionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81E3EA4B1961945800B0739B /* MissionScene.cpp */; };
+		81E3EA4F196194F600B0739B /* MissionScene.h in Sources */ = {isa = PBXBuildFile; fileRef = 81E3EA4C1961945800B0739B /* MissionScene.h */; };
+		81E3EA511961A2C100B0739B /* DemoPlayer in Resources */ = {isa = PBXBuildFile; fileRef = 81E3EA471961935500B0739B /* DemoPlayer */; };
+		81E3EA521961A2C100B0739B /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = 81E3EA481961935500B0739B /* Hero */; };
 		A01E16881784BDA100B0CA4A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6482E165F399D007D4F18 /* libz.dylib */; };
 		A01E16891784BDA100B0CA4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C64832165F3AFD007D4F18 /* Foundation.framework */; };
 		A01E168A1784BDA100B0CA4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6482C165F3988007D4F18 /* AudioToolbox.framework */; };
@@ -1309,6 +1314,10 @@
 		81C68522194DCCFC00903F2B /* CommonUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
 		81C68523194DCCFC00903F2B /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		81C68525194DCDF000903F2B /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		81E3EA471961935500B0739B /* DemoPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DemoPlayer; path = ../samples/Cpp/TestCpp/Resources/DemoPlayer; sourceTree = "<group>"; };
+		81E3EA481961935500B0739B /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Hero; path = ../samples/Cpp/TestCpp/Resources/Hero; sourceTree = "<group>"; };
+		81E3EA4B1961945800B0739B /* MissionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionScene.cpp; sourceTree = "<group>"; };
+		81E3EA4C1961945800B0739B /* MissionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionScene.h; sourceTree = "<group>"; };
 		A01E16931784BDA100B0CA4A /* Simple Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01E17721784C06E00B0CA4A /* Test JavaScript iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test JavaScript iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01E18571784C45500B0CA4A /* JS Watermelon With Me iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JS Watermelon With Me iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1830,6 +1839,8 @@
 				8166DF551956CEC600E8D1A4 /* ResultScene.h */,
 				8166DF591956D30B00E8D1A4 /* SaveData.cpp */,
 				8166DF5A1956D30B00E8D1A4 /* SaveData.h */,
+				81E3EA4B1961945800B0739B /* MissionScene.cpp */,
+				81E3EA4C1961945800B0739B /* MissionScene.h */,
 			);
 			name = Classes;
 			path = ../samples/Cpp/TestCpp/Classes;
@@ -1891,6 +1902,8 @@
 		1AAF538C180E3628000584C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81E3EA471961935500B0739B /* DemoPlayer */,
+				81E3EA481961935500B0739B /* Hero */,
 				810A12AD195F8E2800D96F6C /* spine */,
 				819DE35C19558F2500A3D8B4 /* mission */,
 				37C819741875DF2B00930C57 /* Images */,
@@ -2686,6 +2699,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E3EA511961A2C100B0739B /* DemoPlayer in Resources */,
+				81E3EA521961A2C100B0739B /* Hero in Resources */,
 				819DE36619559E4300A3D8B4 /* mission in Resources */,
 				1AAF526B180E2C26000584C8 /* Default-568h@2x.png in Resources */,
 				1AAF526C180E2C26000584C8 /* Default.png in Resources */,
@@ -2847,6 +2862,7 @@
 				81C68524194DCCFC00903F2B /* CommonUtils.cpp in Sources */,
 				819DE3621955915D00A3D8B4 /* jsoncpp.cpp in Sources */,
 				8166DF561956CEC600E8D1A4 /* ResultScene.cpp in Sources */,
+				81E3EA4D1961945800B0739B /* MissionScene.cpp in Sources */,
 				8166DF5B1956D30B00E8D1A4 /* SaveData.cpp in Sources */,
 				8166DF4E195693C000E8D1A4 /* MenuScene.cpp in Sources */,
 			);
@@ -2856,6 +2872,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E3EA4E196194F500B0739B /* MissionScene.cpp in Sources */,
+				81E3EA4F196194F600B0739B /* MissionScene.h in Sources */,
 				810A12AE195F8EFF00D96F6C /* SpineTest.cpp in Sources */,
 				810A12AF195F8EFF00D96F6C /* SpineTest.h in Sources */,
 				8166DF5F1956DA2700E8D1A4 /* UserInfo.cpp in Sources */,
