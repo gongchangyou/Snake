@@ -94,6 +94,7 @@ bool SpineTestLayer::init () {
     
     SkeletonAnimation * skeletonNode1 = SkeletonAnimation::createWithFile("spine/spineboy.json", "spine/spineboy.atlas");
     
+    
     return true;
 }
 
@@ -167,8 +168,6 @@ void SpineTestLayer::update (float deltaTime) {
             secondUnit->rotation = isClockWise ? secondUnit->rotation - 1 : secondUnit->rotation + 1;
         }
     }
-    
-
 
 }
 

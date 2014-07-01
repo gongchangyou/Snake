@@ -19,9 +19,24 @@ public:
     virtual ~MissionScene();
     virtual bool init();
     static Scene* scene();
+    virtual void update (float deltaTime);
+    bool onTouchBegan(Touch* touch, Event* event);
+    void onTouchMoved(Touch* touch, Event* event);
+    void onTouchEnded(Touch* touch, Event* event);
 private:
+    float vX;
+    float vY;
+    float rotation_gap;
+    Bone* firstUnit;
+    Bone* secondUnit;
+    Bone* thirdUnit;
     
+    Point finalPos;
+    float slope;
+    float finalRotation;
+    bool isClockWise;
 
+    Armature * queue;
 };
 
 #endif /* defined(__cocos2d_samples__MissionScene__) */
