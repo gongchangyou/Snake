@@ -7,10 +7,15 @@
 //
 
 #include "MissionScene.h"
+
 const float VELOCITY = 1.f;
 
-MissionScene::MissionScene(){};
-MissionScene::~MissionScene(){};
+MissionScene::MissionScene(){
+    m_units = NULL;
+};
+MissionScene::~MissionScene(){
+    CC_SAFE_RELEASE_NULL(m_units);
+};
 
 Scene* MissionScene::scene(){
     Scene* scene = Scene::create();
@@ -23,22 +28,20 @@ bool MissionScene::init(){
     if (!Layer::init()) {
         return false;
     }
-    
+    this->setUnits(__Array::create());
     //加载导出的文件
     ArmatureDataManager::getInstance()->addArmatureFileInfo( "DemoPlayer/DemoPlayer0.png" , "DemoPlayer/DemoPlayer0.plist" , "DemoPlayer/DemoPlayer.ExportJson" );
     ArmatureDataManager::getInstance()->addArmatureFileInfo( "DemoPlayer/DemoPlayer1.png" , "DemoPlayer/DemoPlayer1.plist" , "DemoPlayer/DemoPlayer.ExportJson" );
     //创建对象
-    Armature *unit0 = Armature::create( "DemoPlayer" );
-    Armature * unit1 = Armature::create( "DemoPlayer" );
-    Armature * unit2 = Armature::create( "DemoPlayer" );
-    //调用动画
-    unit0->getAnimation()->playWithIndex(1);
-    unit1->getAnimation()->playWithIndex(1);
-    unit2->getAnimation()->playWithIndex(1);
-    unit0->setScale(.1f);
-    unit1->setScale(.1f);
-    unit2->setScale(.1f);
-
+    for (int i=0; i<QUEUE_COUNT; i++) {
+        Armature * unit = Armature::create( "DemoPlayer" );
+        unit->getAnimation()->playWithIndex(1);
+        unit->setScale(.1f);
+        this->getUnits()->addObject(unit);
+        unit->setPosition(200 + 50 * i, 200);
+        this->addChild(unit);
+    }
+    
     scheduleUpdate();
     
     // Adds Touch Event Listener
@@ -52,62 +55,53 @@ bool MissionScene::init(){
     _eventDispatcher->addEventListenerWithFixedPriority(listener, -10);
     _touchListener = listener;
     
-    //queue
-    ArmatureDataManager::getInstance()->addArmatureFileInfo( "Hero/Hero0.png" , "Hero/Hero0.plist" , "Hero/Hero.ExportJson" );
-    
-    queue = Armature::create( "Hero" );
-    Armature *hero = queue;
-    this->addChild(hero);
-    hero->setPosition(200,200);
-    hero->getAnimation()->playWithIndex(0);
-    
-    firstUnit = hero->getBone("Layer13");
-    secondUnit = hero->getBone("Layer3");
-    thirdUnit = hero->getBone("Layer4");
-    hero->getBone("Layer13")->addDisplay(unit0, 0);
-    hero->getBone("Layer3")->addDisplay(unit1, 0);
-    hero->getBone("Layer4")->addDisplay(unit2, 0);
-    
     return true;
 }
 
 bool MissionScene::onTouchBegan(Touch* touch, Event* event){
-    finalPos = touch->getLocation();
+    Point endPos = touch->getLocation();
     
-    Point startPos = queue->getPosition();
-    slope = (finalPos.y - startPos.y) / (finalPos.x - startPos.x);
-    log("start x=%f y=%f end x=%f y=%f", startPos.x, startPos.y, finalPos.x, finalPos.y);
-    log("slope=%f", slope);
-    
-    //调整队伍角度 注意rotation是相对父节点的
-    float lastRotation = finalRotation;
-    finalRotation = 3.14-atan2(finalPos.y - startPos.y, finalPos.x - startPos.x);
-    log("fianlRotation=%f", finalRotation);
-    //判断顺时针 还是逆时针
-    if (finalRotation > lastRotation) {
-        if (finalRotation - lastRotation > 1.57) {
-            isClockWise = false;
-        }else{
-            isClockWise = true;
+    for (int i=0; i<this->getUnits()->count(); i++) {
+        Armature * unitI = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(i));
+        for (int j=i; j>0; j--) {
+            Armature * unit = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(j-1));
+            Point posForPath = unit->getPosition();
+            
+            m_paths[i][i-j] = posForPath;
+            
         }
-    }else{
-        if (finalRotation + 2 * 3.14 - lastRotation > 1.57) {
-            isClockWise = false;
-        }else{
-            isClockWise = true;
-        }
+        
+        m_paths[i][i] = endPos;
+        
+        m_vector[i] = getVector(unitI->getPosition(), m_paths[i][0]);
+        
+        m_currentTarget[i] = 0;
     }
     
-    log("first rotation=%f, finalRotation=%f", firstUnit->getRotation(), finalRotation);
-    
-    vX = sqrt(VELOCITY * VELOCITY / (slope * slope + 1));
-    
-    vX = finalPos.x > startPos.x ? vX : -vX;
-    
-    vY = vX * slope;
-
+    for (int i=0; i<10; i++) {
+        for (int j=0; j<10; j++) {
+            log("x=%f, y=%f", m_paths[i][j].x,m_paths[i][j].y);
+        }
+    }
     return true;
 }
+
+Point MissionScene::getVector(Point startPos, Point endPos){
+    float x = 0;
+    float y = 0;
+    if(endPos.x == startPos.x){
+        x = 0;
+        y = endPos.y > startPos.y ? VELOCITY : -VELOCITY;
+    }else{
+        float slope = (endPos.y - startPos.y) / (endPos.x - startPos.x);
+        x = sqrt(VELOCITY * VELOCITY / (slope * slope + 1));
+        
+        x = endPos.x > startPos.x ? x : -x;
+        y = x * slope;
+    }
+    return Point(x, y);
+}
+
 void MissionScene::onTouchMoved(Touch* touch, Event* event){
     
 }
@@ -116,33 +110,53 @@ void MissionScene::onTouchEnded(Touch* touch, Event* event){
 }
 
 void MissionScene::update (float deltaTime) {
-    
-    Point nowPos = firstUnit->getPosition();
-    bool keepGoing = false;
-    if (vX > 0) {
-        keepGoing = finalPos.x > nowPos.x;
-    }else{
-        keepGoing = finalPos.x < nowPos.x;
+    for (int i=0; i<this->getUnits()->count(); i++) {
+        Armature * unit = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(i));
+        Point vector = m_vector[i];
+        //翻面
+        if (vector.x>0) {
+            unit->setScaleX(-.1f);
+        }else{
+            unit->setScaleX(.1f);
+        }
+        unit->setPosition(vector + unit->getPosition());
+        
+        //判断是否换target
+        int currentIndex = m_currentTarget[i];
+        if (currentIndex == i) {//继续走
+            
+        }else{//看情况换target
+            bool changeTarget = false;
+            Point currentTarget = m_paths[i][currentIndex];
+            Point currentPos = unit->getPosition();
+            if (vector.x == 0) {
+                if (vector.y >0) {
+                    if (currentPos.y >= currentTarget.y) {
+                        changeTarget = true;
+                    }
+                }else{
+                    if (currentPos.y <= currentTarget.y) {
+                        changeTarget = true;
+                    }
+                }
+            }else{
+                if (vector.x > 0) {
+                    if (currentPos.x >= currentTarget.x) {
+                        changeTarget = true;
+                    }
+                }else{
+                    if (currentPos.x <= currentTarget.x) {
+                        changeTarget = true;
+                    }
+                }
+            }
+            
+            if (changeTarget) {
+                m_currentTarget[i] = currentIndex + 1;
+                m_vector[i] = getVector(unit->getPosition(), m_paths[i][currentIndex+1]);
+            }
+        }
     }
     
-    if (vY > 0) {
-        keepGoing = finalPos.y > nowPos.y;
-    }else{
-        keepGoing = finalPos.y < nowPos.y;
-    }
-    
-    if (keepGoing){
-        firstUnit->setPosition(firstUnit->getPosition() + Point(vX, vY));
-    }
-//    
-//    if (int(firstUnit->getRotation() + finalRotation) % 360) {
-//        firstUnit->setRotation( isClockWise ? firstUnit->getRotation() - 1 : firstUnit->getRotation() + 1 );
-//        secondUnit->setRotation( isClockWise ? secondUnit->getRotation() + 0.5 : secondUnit->getRotation() - 0.5 );
-//    }else{
-//        
-//        if (int(secondUnit->getRotation()) % 360) {
-//            secondUnit->setRotation( isClockWise ? secondUnit->getRotation() - 1 : secondUnit->getRotation() + 1 );
-//        }
-//    }
     
 }

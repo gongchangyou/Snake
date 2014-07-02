@@ -57,8 +57,6 @@
 		15C6482D165F3988007D4F18 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6482C165F3988007D4F18 /* AudioToolbox.framework */; };
 		15C6482F165F399D007D4F18 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6482E165F399D007D4F18 /* libz.dylib */; };
 		15C64833165F3AFD007D4F18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C64832165F3AFD007D4F18 /* Foundation.framework */; };
-		1A0800F118780BD400E62F93 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 37C819741875DF2B00930C57 /* Images */; };
-		1A08011718780BD600E62F93 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 37C819741875DF2B00930C57 /* Images */; };
 		1A1197CB1785363400D62A44 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C6482E165F399D007D4F18 /* libz.dylib */; };
 		1A1197CC1785363400D62A44 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07A52B91783AE900073F6A7 /* OpenGLES.framework */; };
 		1A1197CD1785363400D62A44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C64832165F3AFD007D4F18 /* Foundation.framework */; };
@@ -202,8 +200,6 @@
 		1AAF5400180E39D4000584C8 /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FBE1807A4F9005B8026 /* libcocos2dx iOS.a */; };
 		1AAF5401180E39D4000584C8 /* libcocos2dx-extensions iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FC01807A4F9005B8026 /* libcocos2dx-extensions iOS.a */; };
 		1AAF5402180E39D4000584C8 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FC61807A4F9005B8026 /* libCocosDenshion iOS.a */; };
-		37C819F81875DF2B00930C57 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 37C819741875DF2B00930C57 /* Images */; };
-		37C819FB1875DF2B00930C57 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 37C819741875DF2B00930C57 /* Images */; };
 		460E44BB1807DDC2000CDD6D /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FBE1807A4F9005B8026 /* libcocos2dx iOS.a */; };
 		460E44FD1807E413000CDD6D /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FB01807A4F9005B8026 /* libcocos2dx Mac.a */; };
 		460E45861807FDC3000CDD6D /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FB01807A4F9005B8026 /* libcocos2dx Mac.a */; };
@@ -1294,7 +1290,6 @@
 		1AAF5284180E2C31000584C8 /* Test_Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Test_Info.plist; sourceTree = "<group>"; };
 		1AAF5285180E2C31000584C8 /* Test_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_Prefix.pch; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Test cpp Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test cpp Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		37C819741875DF2B00930C57 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = ../samples/Cpp/TestCpp/Resources/Images; sourceTree = "<group>"; };
 		46A15F9C1807A4F8005B8026 /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		810A12AB195F8D5300D96F6C /* SpineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineTest.cpp; sourceTree = "<group>"; };
 		810A12AC195F8D5300D96F6C /* SpineTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineTest.h; sourceTree = "<group>"; };
@@ -1906,7 +1901,6 @@
 				81E3EA481961935500B0739B /* Hero */,
 				810A12AD195F8E2800D96F6C /* spine */,
 				819DE35C19558F2500A3D8B4 /* mission */,
-				37C819741875DF2B00930C57 /* Images */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2573,7 +2567,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A08011718780BD600E62F93 /* Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2588,7 +2581,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0800F118780BD400E62F93 /* Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2597,7 +2589,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AAF5286180E2C31000584C8 /* InfoPlist.strings in Resources */,
-				37C819F81875DF2B00930C57 /* Images in Resources */,
 				1AAF5287180E2C31000584C8 /* MainMenu.xib in Resources */,
 				1AAF5288180E2C31000584C8 /* Icon.icns in Resources */,
 			);
@@ -2705,7 +2696,6 @@
 				1AAF526B180E2C26000584C8 /* Default-568h@2x.png in Resources */,
 				1AAF526C180E2C26000584C8 /* Default.png in Resources */,
 				1AAF526D180E2C26000584C8 /* Default@2x.png in Resources */,
-				37C819FB1875DF2B00930C57 /* Images in Resources */,
 				1AAF526E180E2C26000584C8 /* Icon-100.png in Resources */,
 				1AAF526F180E2C26000584C8 /* Icon-114.png in Resources */,
 				1AAF5270180E2C26000584C8 /* Icon-120.png in Resources */,

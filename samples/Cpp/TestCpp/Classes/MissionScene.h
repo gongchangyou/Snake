@@ -11,6 +11,7 @@
 #include "cocos2d.h"
 #include <cocostudio/CocoStudio.h>
 USING_NS_CC;
+const int QUEUE_COUNT = 10;
 using namespace cocostudio;
 class MissionScene : public Layer{
 public:
@@ -24,19 +25,12 @@ public:
     void onTouchMoved(Touch* touch, Event* event);
     void onTouchEnded(Touch* touch, Event* event);
 private:
-    float vX;
-    float vY;
-    float rotation_gap;
-    Bone* firstUnit;
-    Bone* secondUnit;
-    Bone* thirdUnit;
-    
-    Point finalPos;
-    float slope;
-    float finalRotation;
-    bool isClockWise;
-
-    Armature * queue;
+    Point getVector(Point startPos, Point endPos);
+    Point m_paths[QUEUE_COUNT][QUEUE_COUNT];
+    std::map<int, Point>m_vector;
+    std::map<int, int>m_currentTarget;
+    //CC_SYNTHESIZE_RETAIN(__Array*, m_paths, Paths);
+    CC_SYNTHESIZE_RETAIN(__Array*, m_units, Units);
 };
 
 #endif /* defined(__cocos2d_samples__MissionScene__) */
