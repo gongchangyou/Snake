@@ -90,8 +90,7 @@ Point MissionScene::getVector(Point startPos, Point endPos){
         x = endPos.x > startPos.x ? x : -x;
         y = x * slope;
     }
-    x = int(x * 100) / 100.f;
-    y = int(y * 100) / 100.f;
+ 
     return Point(x, y);
 }
 
@@ -155,9 +154,16 @@ void MissionScene::update (float deltaTime) {
             m_currentTarget[i] = currentIndex + 1;
             m_vector[i] = getVector(unit->getPosition(), m_paths[m_currentTarget[i]]);
             
-            //调整位置
-            if (i>0) {
+           
+            
+        }
+        
+        for (int i=1; i<getUnits()->count(); i++) {
+            //看看是否一直线
+            if (m_currentTarget[i] == m_currentTarget[i-1]) {
+                Armature * unit = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(i));
                 Armature *lastUnit = dynamic_cast<Armature*>( getUnits()->getObjectAtIndex(i-1) );
+                Point nowPos = unit->getPosition();
                 Point lastPos = lastUnit->getPosition();
                 Point slope = getVector(nowPos, lastPos);
                 float tmpSlope = fabs(slope.y / slope.x);
@@ -168,7 +174,7 @@ void MissionScene::update (float deltaTime) {
                     unit->setPosition(finalX, finalY);
                 }
             }
-            
         }
+        
     }
 }
