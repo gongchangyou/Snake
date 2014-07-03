@@ -55,33 +55,24 @@ bool MissionScene::init(){
     _eventDispatcher->addEventListenerWithFixedPriority(listener, -10);
     _touchListener = listener;
     
+    m_paths[0] = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(0))->getPosition();
     return true;
 }
 
 bool MissionScene::onTouchBegan(Touch* touch, Event* event){
     Point endPos = touch->getLocation();
     
-    for (int i=0; i<this->getUnits()->count(); i++) {
-        Armature * unitI = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(i));
-        for (int j=i; j>0; j--) {
-            Armature * unit = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(j-1));
-            Point posForPath = unit->getPosition();
-            
-            m_paths[i][i-j] = posForPath;
-            
-        }
-        
-        m_paths[i][i] = endPos;
-        
-        m_vector[i] = getVector(unitI->getPosition(), m_paths[i][0]);
-        
-        m_currentTarget[i] = 0;
+    
+    m_paths[m_paths.size()-1] = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(0))->getPosition();
+    m_paths[m_paths.size()] = endPos;
+    for (int i=0; i<m_paths.size(); i++) {
+        log("path i=%d x=%f y=%f", i, m_paths[i].x, m_paths[i].y);
     }
     
-    for (int i=0; i<10; i++) {
-        for (int j=0; j<10; j++) {
-            log("x=%f, y=%f", m_paths[i][j].x,m_paths[i][j].y);
-        }
+    for (int i=0; i<getUnits()->count(); i++) {
+        int currentTaget = m_currentTarget[i];
+        Armature * unit = dynamic_cast<Armature*>(getUnits()->getObjectAtIndex(i));
+        m_vector[i] = getVector(unit->getPosition(), m_paths[currentTaget]);
     }
     return true;
 }
@@ -99,6 +90,8 @@ Point MissionScene::getVector(Point startPos, Point endPos){
         x = endPos.x > startPos.x ? x : -x;
         y = x * slope;
     }
+    x = int(x * 100) / 100.f;
+    y = int(y * 100) / 100.f;
     return Point(x, y);
 }
 
@@ -116,47 +109,51 @@ void MissionScene::update (float deltaTime) {
         //翻面
         if (vector.x>0) {
             unit->setScaleX(-.1f);
-        }else{
+        }else if(vector.x < 0){
             unit->setScaleX(.1f);
         }
         unit->setPosition(vector + unit->getPosition());
         
-        //判断是否换target
         int currentIndex = m_currentTarget[i];
-        if (currentIndex == i) {//继续走
-            
-        }else{//看情况换target
-            bool changeTarget = false;
-            Point currentTarget = m_paths[i][currentIndex];
-            Point currentPos = unit->getPosition();
-            if (vector.x == 0) {
-                if (vector.y >0) {
-                    if (currentPos.y >= currentTarget.y) {
-                        changeTarget = true;
-                    }
-                }else{
-                    if (currentPos.y <= currentTarget.y) {
-                        changeTarget = true;
-                    }
+        if (currentIndex == m_paths.size() - 1) {
+            continue;
+        }
+        
+        Point endPos = m_paths[currentIndex];
+        Point nowPos = unit->getPosition();
+        //m_vector[i] = getVector(nowPos, endPos);
+ log("m_vector currentIndex=%d i=%d start x=%f y=%f end x=%f y=%f",currentIndex, i, nowPos.x, nowPos.y, endPos.x, endPos.y);
+        vector = m_vector[i];
+        //log("m_vector i=%d x=%f y=%f", i, vector.x, vector.y);
+        bool changeTarget = false;
+
+        if (vector.x == 0) {
+            if (vector.y >0) {
+                if (nowPos.y >= endPos.y) {
+                    changeTarget = true;
                 }
             }else{
-                if (vector.x > 0) {
-                    if (currentPos.x >= currentTarget.x) {
-                        changeTarget = true;
-                    }
-                }else{
-                    if (currentPos.x <= currentTarget.x) {
-                        changeTarget = true;
-                    }
+                if (nowPos.y <= endPos.y) {
+                    changeTarget = true;
                 }
             }
-            
-            if (changeTarget) {
-                m_currentTarget[i] = currentIndex + 1;
-                m_vector[i] = getVector(unit->getPosition(), m_paths[i][currentIndex+1]);
+        }else{
+            if (vector.x > 0) {
+                if (nowPos.x >= endPos.x) {
+                    changeTarget = true;
+                }
+            }else{
+                if (nowPos.x <= endPos.x) {
+                    changeTarget = true;
+                }
             }
         }
+        
+        if (changeTarget) {
+            
+            log("changetarget i=%d currentId=%d", i, currentIndex);
+            m_currentTarget[i] = currentIndex + 1;
+            m_vector[i] = getVector(unit->getPosition(), m_paths[m_currentTarget[i]]);
+        }
     }
-    
-    
 }

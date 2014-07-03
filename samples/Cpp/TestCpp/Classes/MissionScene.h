@@ -11,7 +11,7 @@
 #include "cocos2d.h"
 #include <cocostudio/CocoStudio.h>
 USING_NS_CC;
-const int QUEUE_COUNT = 10;
+const int QUEUE_COUNT = 5;
 using namespace cocostudio;
 class MissionScene : public Layer{
 public:
@@ -26,7 +26,7 @@ public:
     void onTouchEnded(Touch* touch, Event* event);
 private:
     Point getVector(Point startPos, Point endPos);
-    Point m_paths[QUEUE_COUNT][QUEUE_COUNT];
+    std::map<int, Point>m_paths;
     std::map<int, Point>m_vector;
     std::map<int, int>m_currentTarget;
     //CC_SYNTHESIZE_RETAIN(__Array*, m_paths, Paths);
