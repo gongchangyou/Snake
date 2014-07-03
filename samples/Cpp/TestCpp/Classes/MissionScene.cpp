@@ -9,7 +9,7 @@
 #include "MissionScene.h"
 
 const float VELOCITY = 1.f;
-
+const float GAP = 50.f;
 MissionScene::MissionScene(){
     m_units = NULL;
 };
@@ -38,7 +38,7 @@ bool MissionScene::init(){
         unit->getAnimation()->playWithIndex(1);
         unit->setScale(.1f);
         this->getUnits()->addObject(unit);
-        unit->setPosition(200 + 50 * i, 200);
+        unit->setPosition(200 + GAP * i, 200);
         this->addChild(unit);
     }
     
@@ -154,6 +154,21 @@ void MissionScene::update (float deltaTime) {
             log("changetarget i=%d currentId=%d", i, currentIndex);
             m_currentTarget[i] = currentIndex + 1;
             m_vector[i] = getVector(unit->getPosition(), m_paths[m_currentTarget[i]]);
+            
+            //调整位置
+            if (i>0) {
+                Armature *lastUnit = dynamic_cast<Armature*>( getUnits()->getObjectAtIndex(i-1) );
+                Point lastPos = lastUnit->getPosition();
+                Point slope = getVector(nowPos, lastPos);
+                float tmpSlope = fabs(slope.y / slope.x);
+                if (nowPos.getDistance(lastPos) != GAP) {
+                    float x = sqrtf(GAP * GAP / (tmpSlope * tmpSlope + 1));
+                    float finalX = slope.x > 0 ? lastPos.x - x : lastPos.x + x;
+                    float finalY = slope.y > 0 ? lastPos.y - tmpSlope * x : lastPos.y + tmpSlope * x;
+                    unit->setPosition(finalX, finalY);
+                }
+            }
+            
         }
     }
 }
