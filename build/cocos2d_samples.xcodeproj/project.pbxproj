@@ -1309,6 +1309,7 @@
 		81C68522194DCCFC00903F2B /* CommonUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
 		81C68523194DCCFC00903F2B /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		81C68525194DCDF000903F2B /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		81D087B819692702005E39CC /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		81E3EA471961935500B0739B /* DemoPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DemoPlayer; path = ../samples/Cpp/TestCpp/Resources/DemoPlayer; sourceTree = "<group>"; };
 		81E3EA481961935500B0739B /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Hero; path = ../samples/Cpp/TestCpp/Resources/Hero; sourceTree = "<group>"; };
 		81E3EA4B1961945800B0739B /* MissionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionScene.cpp; sourceTree = "<group>"; };
@@ -1897,6 +1898,7 @@
 		1AAF538C180E3628000584C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81D087B819692702005E39CC /* Images */,
 				81E3EA471961935500B0739B /* DemoPlayer */,
 				81E3EA481961935500B0739B /* Hero */,
 				810A12AD195F8E2800D96F6C /* spine */,

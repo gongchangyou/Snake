@@ -32,14 +32,65 @@ bool MissionScene::init(){
     //加载导出的文件
     ArmatureDataManager::getInstance()->addArmatureFileInfo( "DemoPlayer/DemoPlayer0.png" , "DemoPlayer/DemoPlayer0.plist" , "DemoPlayer/DemoPlayer.ExportJson" );
     ArmatureDataManager::getInstance()->addArmatureFileInfo( "DemoPlayer/DemoPlayer1.png" , "DemoPlayer/DemoPlayer1.plist" , "DemoPlayer/DemoPlayer.ExportJson" );
+    /*
+     test
+     */
+    //test sprite 碰撞
+    Sprite * sprite = Sprite::create("Images/b1.png");
+    this->addChild(sprite);
+    sprite->setPosition(200, 100);
+    Rect rect = sprite->getBoundingBox();
+    
     //创建对象
     for (int i=0; i<QUEUE_COUNT; i++) {
         Armature * unit = Armature::create( "DemoPlayer" );
         unit->getAnimation()->playWithIndex(1);
         unit->setScale(.1f);
         this->getUnits()->addObject(unit);
-        unit->setPosition(200 + GAP * i, 200);
+        unit->setPosition(200 + 5 * i, 200);
         this->addChild(unit);
+        
+        
+        float minx = 0, miny = 0, maxx = 0, maxy = 0;
+        ColliderDetector *detector = unit->getBone("Layer14")->getColliderDetector();
+        if(detector){
+            const cocos2d::Vector<ColliderBody*>& bodyList = detector->getColliderBodyList();
+            Object *object = NULL;
+            for (auto& object : bodyList)
+            {
+                ColliderBody *body = static_cast<ColliderBody*>(object);
+                const std::vector<Point> &vertexList = body->getCalculatedVertexList();
+                
+                unsigned long length = vertexList.size();
+                Point *points = new Point[length];
+                for (int j = 0; j<length; j++)
+                {
+                    Point p = vertexList.at(j);
+                    if (j == 0)
+                    {
+                        minx = maxx = p.x;
+                        miny = maxy = p.y;
+                    }
+                    else
+                    {
+                        minx = p.x < minx ? p.x : minx;
+                        miny = p.y < miny ? p.y : miny;
+                        maxx = p.x > maxx ? p.x : maxx;
+                        maxy = p.y > maxy ? p.y : maxy;
+                    }
+                    
+                }
+                Rect temp = Rect(minx, miny, maxx - minx, maxy - miny);
+                log("i=%d x=%f,y=%f ,width=%f, height=%f",i,temp.origin.x,temp.origin.y, temp.size.width, temp.size.height);
+                if (temp.intersectsRect(rect)) {
+                    log("intersectsRect");
+                }
+            }
+        
+            log("detector");
+        }else{
+            log("no detector");
+        }
     }
     
     scheduleUpdate();

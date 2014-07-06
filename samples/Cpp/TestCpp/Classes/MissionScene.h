@@ -11,7 +11,7 @@
 #include "cocos2d.h"
 #include <cocostudio/CocoStudio.h>
 USING_NS_CC;
-const int QUEUE_COUNT = 5;
+const int QUEUE_COUNT = 1;
 using namespace cocostudio;
 class MissionScene : public Layer{
 public:
