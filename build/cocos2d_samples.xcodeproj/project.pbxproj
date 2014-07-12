@@ -208,6 +208,10 @@
 		460E45E018080238000CDD6D /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46A15FC61807A4F9005B8026 /* libCocosDenshion iOS.a */; };
 		810A12AE195F8EFF00D96F6C /* SpineTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 810A12AB195F8D5300D96F6C /* SpineTest.cpp */; };
 		810A12AF195F8EFF00D96F6C /* SpineTest.h in Sources */ = {isa = PBXBuildFile; fileRef = 810A12AC195F8D5300D96F6C /* SpineTest.h */; };
+		811007091970D424005043EB /* effect_prt_020_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 811007061970CA6E005043EB /* effect_prt_020_1.plist */; };
+		8110070C1970DD54005043EB /* PlistContentCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8110070A1970DD54005043EB /* PlistContentCache.cpp */; };
+		8110070D1970DE0F005043EB /* PlistContentCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8110070A1970DD54005043EB /* PlistContentCache.cpp */; };
+		8110070E1970DE0F005043EB /* PlistContentCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 8110070B1970DD54005043EB /* PlistContentCache.h */; };
 		8166DF4E195693C000E8D1A4 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8166DF4C195693C000E8D1A4 /* MenuScene.cpp */; };
 		8166DF511956941D00E8D1A4 /* MenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8166DF4C195693C000E8D1A4 /* MenuScene.cpp */; };
 		8166DF521956941D00E8D1A4 /* MenuScene.h in Sources */ = {isa = PBXBuildFile; fileRef = 8166DF4D195693C000E8D1A4 /* MenuScene.h */; };
@@ -1294,6 +1298,9 @@
 		810A12AB195F8D5300D96F6C /* SpineTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpineTest.cpp; sourceTree = "<group>"; };
 		810A12AC195F8D5300D96F6C /* SpineTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineTest.h; sourceTree = "<group>"; };
 		810A12AD195F8E2800D96F6C /* spine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spine; path = ../samples/Cpp/TestCpp/Resources/spine; sourceTree = "<group>"; };
+		811007061970CA6E005043EB /* effect_prt_020_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = effect_prt_020_1.plist; sourceTree = "<group>"; };
+		8110070A1970DD54005043EB /* PlistContentCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlistContentCache.cpp; sourceTree = "<group>"; };
+		8110070B1970DD54005043EB /* PlistContentCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistContentCache.h; sourceTree = "<group>"; };
 		8166DF4C195693C000E8D1A4 /* MenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuScene.cpp; sourceTree = "<group>"; };
 		8166DF4D195693C000E8D1A4 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		8166DF541956CEC600E8D1A4 /* ResultScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultScene.cpp; sourceTree = "<group>"; };
@@ -1837,6 +1844,8 @@
 				8166DF5A1956D30B00E8D1A4 /* SaveData.h */,
 				81E3EA4B1961945800B0739B /* MissionScene.cpp */,
 				81E3EA4C1961945800B0739B /* MissionScene.h */,
+				8110070A1970DD54005043EB /* PlistContentCache.cpp */,
+				8110070B1970DD54005043EB /* PlistContentCache.h */,
 			);
 			name = Classes;
 			path = ../samples/Cpp/TestCpp/Classes;
@@ -1898,6 +1907,7 @@
 		1AAF538C180E3628000584C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				811007061970CA6E005043EB /* effect_prt_020_1.plist */,
 				81D087B819692702005E39CC /* Images */,
 				81E3EA471961935500B0739B /* DemoPlayer */,
 				81E3EA481961935500B0739B /* Hero */,
@@ -2692,6 +2702,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				811007091970D424005043EB /* effect_prt_020_1.plist in Resources */,
 				81E3EA511961A2C100B0739B /* DemoPlayer in Resources */,
 				81E3EA521961A2C100B0739B /* Hero in Resources */,
 				819DE36619559E4300A3D8B4 /* mission in Resources */,
@@ -2851,6 +2862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8166DF5E1956D63D00E8D1A4 /* UserInfo.cpp in Sources */,
+				8110070C1970DD54005043EB /* PlistContentCache.cpp in Sources */,
 				81C68524194DCCFC00903F2B /* CommonUtils.cpp in Sources */,
 				819DE3621955915D00A3D8B4 /* jsoncpp.cpp in Sources */,
 				8166DF561956CEC600E8D1A4 /* ResultScene.cpp in Sources */,
@@ -2864,6 +2876,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8110070D1970DE0F005043EB /* PlistContentCache.cpp in Sources */,
+				8110070E1970DE0F005043EB /* PlistContentCache.h in Sources */,
 				81E3EA4E196194F500B0739B /* MissionScene.cpp in Sources */,
 				81E3EA4F196194F600B0739B /* MissionScene.h in Sources */,
 				810A12AE195F8EFF00D96F6C /* SpineTest.cpp in Sources */,

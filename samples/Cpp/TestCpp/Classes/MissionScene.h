@@ -31,6 +31,8 @@ private:
     std::map<int, int>m_currentTarget;
     //CC_SYNTHESIZE_RETAIN(__Array*, m_paths, Paths);
     CC_SYNTHESIZE_RETAIN(__Array*, m_units, Units);
+    
+    Sprite *enemy;
 };
 
 #endif /* defined(__cocos2d_samples__MissionScene__) */

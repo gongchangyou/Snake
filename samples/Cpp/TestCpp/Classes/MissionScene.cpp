@@ -7,7 +7,6 @@
 //
 
 #include "MissionScene.h"
-
 const float VELOCITY = 1.f;
 const float GAP = 50.f;
 MissionScene::MissionScene(){
@@ -36,10 +35,10 @@ bool MissionScene::init(){
      test
      */
     //test sprite 碰撞
-    Sprite * sprite = Sprite::create("Images/b1.png");
-    this->addChild(sprite);
-    sprite->setPosition(200, 100);
-    Rect rect = sprite->getBoundingBox();
+    enemy = Sprite::create("Images/b1.png");
+    this->addChild(enemy);
+    enemy->setPosition(200, 0);
+    enemy->runAction(RepeatForever::create(Sequence::create(MoveTo::create(2.f, Point(200, 200)),MoveTo::create(2.f, Point(0, 200)), MoveTo::create(2.f, Point(0, 0)), MoveTo::create(2.f, Point(200, 0)), NULL)));
     
     //创建对象
     for (int i=0; i<QUEUE_COUNT; i++) {
@@ -47,10 +46,10 @@ bool MissionScene::init(){
         unit->getAnimation()->playWithIndex(1);
         unit->setScale(.1f);
         this->getUnits()->addObject(unit);
-        unit->setPosition(200 + 5 * i, 200);
+        unit->setPosition(300 + 5 * i, 200);
         this->addChild(unit);
         
-        
+        /*
         float minx = 0, miny = 0, maxx = 0, maxy = 0;
         ColliderDetector *detector = unit->getBone("Layer14")->getColliderDetector();
         if(detector){
@@ -91,6 +90,7 @@ bool MissionScene::init(){
         }else{
             log("no detector");
         }
+         */
     }
     
     scheduleUpdate();
@@ -107,6 +107,14 @@ bool MissionScene::init(){
     _touchListener = listener;
     
     m_paths[0] = dynamic_cast<Armature*>(this->getUnits()->getObjectAtIndex(0))->getPosition();
+    
+    //enemy
+    
+    //子弹
+    const char * key = "effect_prt_020_1.plist";
+    std::string file = FileUtils::getInstance()->fullPathForFilename(key);
+    ParticleSystemQuad * effect = ParticleSystemQuad::create(file);
+    this->addChild(effect);
     return true;
 }
 
@@ -226,6 +234,20 @@ void MissionScene::update (float deltaTime) {
                 }
             }
         }
-        
     }
+    
+    
+    //判断是否对敌开枪
+    for (int i=0; i<getUnits()->count(); i++) {
+        Point unitPos = dynamic_cast<Armature*>(getUnits()->getObjectAtIndex(i))->getPosition();
+        Point enemyPos = enemy->getPosition();
+        if (unitPos.getDistance(enemyPos) < 20) {
+            const char * key = "effect_prt_020_1.plist";
+            std::string file = FileUtils::getInstance()->fullPathForFilename(key);
+            ParticleSystemQuad * effect = ParticleSystemQuad::create(file);
+            effect->setPosition(enemyPos);
+            this->addChild(effect);
+        }
+    }
+    
 }
